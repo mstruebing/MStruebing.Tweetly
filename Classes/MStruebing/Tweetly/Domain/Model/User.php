@@ -20,11 +20,15 @@ class User
     protected $username;
 
     /**
+     * @ORM\OneToMany(mappedBy="user")
+     * @ORM\OrderBy({"date" = "DESC"})
      * @var \MStruebing\Tweetly\Domain\Model\Tweet
      */
     protected $tweets;
 
     /**
+     * @ORM\OneToMany(mappedBy="user")
+     * @ORM\OrderBy({"username" = "DESC"})
      * @var \MStruebing\Tweetly\Domain\Model\User
      */
     protected $following;
