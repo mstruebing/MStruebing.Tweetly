@@ -1,5 +1,6 @@
 import gulp from 'gulp';
 import sass from 'gulp-sass';
+import babel from 'gulp-babel';
 import minifycss from 'gulp-cssnano';
 import minifyjs from 'gulp-minify';
 
@@ -19,6 +20,9 @@ gulp.task('MStruebing.Tweetly:compile:styles', () => {
 
 gulp.task('MStruebing.Tweetly:compile:scripts', () => {
   return gulp.src(paths.private + 'JavaScripts/App.js')
+    .pipe(babel({
+			presets: ['es2015']
+		}))
     .pipe(minifyjs())
     .pipe(gulp.dest(paths.public + 'JavaScripts/'))
 });
