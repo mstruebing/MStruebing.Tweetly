@@ -15,6 +15,7 @@ class Tweet
 {
 
     /**
+     * @ORM\ManyToOne
      * @var \MStruebing\Tweetly\Domain\Model\User
      */
     protected $author;
