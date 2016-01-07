@@ -1,0 +1,7 @@
+-
+  name: 'index'
+  uriPattern: ''
+  defaults:
+    '@package': MStruebing.Tweetly
+    '@controller': 'Standard'
+    '@action': 'index'
