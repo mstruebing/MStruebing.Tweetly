@@ -19,6 +19,18 @@ class UserController extends ActionController
     protected $userRepository;
 
     /**
+     * @Flow\Inject
+     * @var \TYPO3\Flow\Security\AccountFactory
+     */
+    protected $accountFactory;
+
+    /**
+     * @Flow\Inject
+     * @var \TYPO3\Flow\Security\AccountRepository
+     */
+    protected $accountRepository;
+
+    /**
      * @return void
      */
     public function indexAction()
@@ -43,14 +55,26 @@ class UserController extends ActionController
     }
 
     /**
-     * @param \MStruebing\Tweetly\Domain\Model\User $newUser
+     * @param string $identifier
+     * @param string $password
      * @return void
      */
-    public function createAction(User $newUser)
+    public function createAction($identifier, $password)
     {
-        $this->userRepository->add($newUser);
-        $this->addFlashMessage('Created a new user.');
-        $this->redirect('index');
+        if ($this->accountRepository->countByAccountIdentifier($identifier) == 1 &&
+            $this->userRepository->countByUsername($identifier) == 1) {
+
+            $this->addFlashMessage('Nickname already taken, please choose another one!');
+            $this->redirect('new');
+        } else {
+            $account = $this->accountFactory->createAccountWithPassword($identifier, $password);
+            $this->accountRepository->add($account);
+            $user = new User();
+            $user->setUsername($identifier);
+            $this->userRepository->add($user);
+            $this->addFlashMessage('Account ' . $identifier . ' successful created! You can login now!');
+            $this->redirect('index', 'Authentication');
+        }
     }
 
     /**

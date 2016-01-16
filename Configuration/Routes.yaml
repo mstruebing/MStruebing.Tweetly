@@ -1,7 +1,23 @@
 -
-  name: 'index'
+  name: 'Index Route'
   uriPattern: ''
   defaults:
-    '@package': MStruebing.Tweetly
-    '@controller': 'Standard'
+    '@package': 'MStruebing.Tweetly'
+    '@controller': 'Authentication'
     '@action': 'index'
+
+-
+  name: 'new User Route'
+  uriPattern: 'register'
+  defaults:
+    '@package': MStruebing.Tweetly
+    '@controller': 'User'
+    '@action': 'new'
+
+-
+  name: 'create User Route'
+  uriPattern: 'register/create'
+  defaults:
+    '@package': MStruebing.Tweetly
+    '@controller': 'User'
+    '@action': 'create'

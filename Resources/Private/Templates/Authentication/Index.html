@@ -1,0 +1,15 @@
+<f:layout name="Default" />
+
+<f:section name="Title">Tweetly</f:section>
+
+<f:section name="Content">
+	<h2>Please Login</h2>
+  <form action="your/app/authenticate" method="post">
+   <input type="text"
+      name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][username]" />
+   <input type="password"        name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][password]" />
+   <input type="submit" value="Login" />
+  </form>
+
+	<p>or <a href="/register">register</a></p>
+</f:section>

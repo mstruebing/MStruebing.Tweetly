@@ -6,15 +6,10 @@
     <p>Just fill out the following form to create a new user:</p>
 
     <f:form action="create" objectName="newUser">
-        <ol>
-            <li>
-                <label for="name">Name</label>
-                <f:form.textfield property="name" id="name" />
-            </li>
-        
-            <li>
-                <f:form.submit value="Create" />
-            </li>
-        </ol>
+        <label for="identifier">Nickname</label>
+        <input type="text" name="identifier">
+        <label for="password">Password</label>
+        <input type="password" name="password">
+        <f:form.submit value="Create" />
     </f:form>
 </f:section>
