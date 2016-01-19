@@ -6,8 +6,10 @@ namespace MStruebing\Tweetly\Controller;
  */
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Mvc\ActionRequest;
+use TYPO3\Flow\Security\Authentication\Controller\AbstractAuthenticationController;
 
-class AuthenticationController extends \TYPO3\Flow\Mvc\Controller\ActionController
+class LoginController extends AbstractAuthenticationController
 {
 
     /**
@@ -29,7 +31,7 @@ class AuthenticationController extends \TYPO3\Flow\Mvc\Controller\ActionControll
         {
             $this->redirectToRequest($originalRequest);
         }
-        $this->redirect('someDefaultActionAfterLogin');
+        $this->redirect('index', 'User');
     }
 
     /**

@@ -1,0 +1,14 @@
+<f:layout name="Default" />
+
+<f:section name="Title">Tweetly</f:section>
+
+<f:section name="Content">
+	<h2>Please Login</h2>
+  <f:form action="authenticate" controller="Login" package="MStruebing.Tweetly">
+    <f:form.textfield id="username" name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][username]" />
+    <f:form.password id="password" name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][password]" />
+    <f:form.submit value="login" />
+  </f:form>
+
+	<p>or <a href="/register">register</a></p>
+</f:section>

@@ -3,5 +3,5 @@ TYPO3:
     security:
       authentication:
         providers:
-          'usernameAndPassProvider':
+          'DefaultProvider':
             provider: 'PersistedUsernamePasswordProvider'
