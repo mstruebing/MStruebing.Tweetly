@@ -31,10 +31,19 @@ class UserController extends ActionController
     protected $accountRepository;
 
     /**
+     * @Flow\Inject
+     * @var TYPO3\Flow\Security\Authentication\AuthenticationProviderManager
+     */
+    protected $authenticationProviderManager;
+
+    /**
      * @return void
      */
     public function indexAction()
     {
+        if (!$this->authenticationProviderManager->isAuthenticated()) {
+            $this->redirect('index', 'Login');
+        }
         $this->view->assign('users', $this->userRepository->findAll());
         $this->view->assign('activeUser', $this->userRepository->findActiveUser());
     }

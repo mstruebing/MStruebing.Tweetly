@@ -52,6 +52,7 @@ class TweetController extends ActionController
         $newTweet->setContent($tweetContent);
         $newTweet->setAuthor($this->userRepository->findActiveUser());
         $this->createAction($newTweet);
+        $this->redirect('index', 'User');
     }
 
     /**

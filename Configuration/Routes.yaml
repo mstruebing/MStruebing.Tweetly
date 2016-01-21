@@ -3,12 +3,20 @@
   uriPattern: ''
   defaults:
     '@package': 'MStruebing.Tweetly'
+    '@controller': 'User'
+    '@action': 'index'
+
+-
+  name: 'Login Route'
+  uriPattern: 'login'
+  defaults:
+    '@package': 'MStruebing.Tweetly'
     '@controller': 'Login'
     '@action': 'index'
 
 -
-  name: 'login Route'
-  uriPattern: 'login'
+  name: 'authenticate Route'
+  uriPattern: 'authenticate'
   defaults:
     '@package': MStruebing.Tweetly
     '@controller': 'Login'
