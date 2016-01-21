@@ -30,6 +30,10 @@ class Tweet
      */
     protected $date;
 
+    public function __construct() {
+        $this->date = new \DateTime();
+    }
+
 
     /**
      * @return \MStruebing\Tweetly\Domain\Model\User
@@ -71,15 +75,6 @@ class Tweet
     public function getDate()
     {
         return $this->date;
-    }
-
-    /**
-     * @param \DateTime $date
-     * @return void
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
     }
 
 }

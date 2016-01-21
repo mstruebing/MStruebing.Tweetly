@@ -7,6 +7,10 @@ namespace MStruebing\Tweetly\Domain\Model;
 
 use TYPO3\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use MStruebing\Tweetly\Domain\Model\Tweet;
+
 
 /**
  * @Flow\Entity
@@ -22,14 +26,14 @@ class User
     /**
      * @ORM\OneToMany(mappedBy="user")
      * @ORM\OrderBy({"date" = "DESC"})
-     * @var \MStruebing\Tweetly\Domain\Model\Tweet
+     * @var Collection<Tweet>
      */
     protected $tweets;
 
     /**
      * @ORM\OneToMany(mappedBy="user")
      * @ORM\OrderBy({"username" = "DESC"})
-     * @var \MStruebing\Tweetly\Domain\Model\User
+     * @var Collection<User>
      */
     protected $following;
 

@@ -1,19 +1,27 @@
 <f:layout name="Default" />
 
-<f:section name="Title">A list of users</f:section>
+<f:section name="Title">Welcome {activeUser.username}</f:section>
 
 <f:section name="Content">
+<f:security.ifAuthenticated>
+  <f:link.action action="logout" controller="Login">Logout</f:link.action>
+  <div class="new-tweet">
+      <f:form action="new" controller="Tweet">
+          <f:form.textarea id="tweetContent" name="tweetContent" />
+          <f:form.submit value="Tweet" />
+      </f:form>
+  </div>
+</f:security.ifAuthenticated>
     <f:if condition="{users}">
         <f:then>
             <ul>
                 <f:for each="{users}" as="user">
-                    <li>
-                        <f:link.action action="show" arguments="{user: user}">{user.name}</f:link.action>
-                        <f:link.action action="edit" arguments="{user: user}">Edit</f:link.action>
-                        <f:form action="delete" arguments="{user: user}">
-                            <f:form.submit value="Delete" />
-                        </f:form>
-                    </li>
+                    <f:if condition="{user.username} != {username}">
+                        <li>
+                            <f:link.action action="follow" arguments="{user: user}">Follow</f:link.action>
+                            <f:link.action action="show" arguments="{user: user}">{user.username}</f:link.action>
+                        </li>
+                    </f:if>
                 </f:for>
             </ul>
         </f:then>
@@ -21,5 +29,4 @@
             <p>No users created yet.</p>
         </f:else>
     </f:if>
-    <p><f:link.action action="new">Create a new user</f:link.action></p>
 </f:section>

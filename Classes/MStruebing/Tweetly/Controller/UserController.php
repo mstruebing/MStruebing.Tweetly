@@ -36,6 +36,7 @@ class UserController extends ActionController
     public function indexAction()
     {
         $this->view->assign('users', $this->userRepository->findAll());
+        $this->view->assign('activeUser', $this->userRepository->findActiveUser());
     }
 
     /**
@@ -63,7 +64,6 @@ class UserController extends ActionController
     {
         if ($this->accountRepository->countByAccountIdentifier($identifier) == 1 &&
             $this->userRepository->countByUsername($identifier) == 1) {
-
             $this->addFlashMessage('Nickname already taken, please choose another one!');
             $this->redirect('new');
         } else {
@@ -75,6 +75,14 @@ class UserController extends ActionController
             $this->addFlashMessage('Account ' . $identifier . ' successful created! You can login now!');
             $this->redirect('index', 'Authentication');
         }
+    }
+
+    /**
+     * @var MStruebing\Tweetly\Domain\Model\User $user
+     * @return void
+     */
+    public function followAction(MStruebing\Tweetly\Domain\Model\User $user) {
+
     }
 
     /**
@@ -107,5 +115,4 @@ class UserController extends ActionController
         $this->addFlashMessage('Deleted a user.');
         $this->redirect('index');
     }
-
 }

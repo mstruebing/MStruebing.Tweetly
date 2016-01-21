@@ -8,6 +8,7 @@ namespace MStruebing\Tweetly\Controller;
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Mvc\Controller\ActionController;
 use MStruebing\Tweetly\Domain\Model\Tweet;
+use MStruebing\Tweetly\Domain\Model\User;
 
 class TweetController extends ActionController
 {
@@ -17,6 +18,12 @@ class TweetController extends ActionController
      * @var \MStruebing\Tweetly\Domain\Repository\TweetRepository
      */
     protected $tweetRepository;
+
+    /**
+     * @Flow\Inject
+     * @var \MStruebing\Tweetly\Domain\Repository\UserRepository
+     */
+    protected $userRepository;
 
     /**
      * @return void
@@ -36,10 +43,15 @@ class TweetController extends ActionController
     }
 
     /**
+     * @param string $tweetContent
      * @return void
      */
-    public function newAction()
+    public function newAction($tweetContent)
     {
+        $newTweet = new Tweet();
+        $newTweet->setContent($tweetContent);
+        $newTweet->setAuthor($this->userRepository->findActiveUser());
+        $this->createAction($newTweet);
     }
 
     /**
@@ -50,7 +62,6 @@ class TweetController extends ActionController
     {
         $this->tweetRepository->add($newTweet);
         $this->addFlashMessage('Created a new tweet.');
-        $this->redirect('index');
     }
 
     /**
